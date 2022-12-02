@@ -20,7 +20,9 @@
     "@capacitor/core": "^4.6.0",
     "@capacitor/ios": "^4.6.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "sqlite3": "^5.1.2",
+    "typeorm": "^0.3.10"
   },
   "devDependencies": {
     "@capacitor/cli": "^4.6.0",
