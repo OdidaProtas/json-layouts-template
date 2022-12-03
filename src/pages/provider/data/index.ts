@@ -2,9 +2,9 @@ export const defaultPages = [
   {
     page: {
       name: "LandingPage",
-      exact: true,
-      path: "/",
-      components: [{ type: "" }],
+      components: [{ type: "" }, { type: "" }, { type: "" }],
     },
+    exact: true,
+    path: "/",
   },
 ];
