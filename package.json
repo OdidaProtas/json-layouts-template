@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev-server": "nodemon ts-node ./api/index.ts",
+    "dev-server": "ts-node api/index.ts",
     "ssr": "ts-node index.js",
     "serve-dev": "concurrently --kill-others \"npm run dev-server\" \"npm run start-dev\"",
     "start-dev": "vite",
