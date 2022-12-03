@@ -1,4 +1,6 @@
+import { usePagesStateValue } from "../pages/provider";
+
 export default function usePages() {
-    const pages = usePagesStateValue()
-  return [];
+  const pages = usePagesStateValue("pages");
+  return [...pages];
 }
