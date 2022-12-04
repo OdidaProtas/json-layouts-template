@@ -5,6 +5,7 @@ import { defaultPages } from "./data";
 const initialState = {
   pages: [...defaultPages],
   dispatch: () => {},
+  loaders:{}
 };
 
 export const PagesContext = React.createContext(initialState);

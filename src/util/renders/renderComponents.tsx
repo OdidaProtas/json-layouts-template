@@ -1,7 +1,7 @@
 import DefaultComponent from "../../components/DefaultComponent";
 
 export default function renderComponents(components: any[] = []) {
-  return components.map((component) => {
+  return components.map((component, index) => {
     const { type, data, clickAction } = component;
     switch (type) {
       case "autocomplete": {
@@ -49,7 +49,7 @@ export default function renderComponents(components: any[] = []) {
       case "alert": {
       }
       default: {
-        return <DefaultComponent>'No component data'</DefaultComponent>;
+        return <DefaultComponent key={index}>'No component data'</DefaultComponent>;
       }
     }
   });

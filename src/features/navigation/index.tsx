@@ -19,7 +19,7 @@ export default function Navigation({ navData = [] }: INavigation) {
           />
         );
       }),
-    []
+    [navData]
   );
   return <Switch>{routes}</Switch>;
 }
