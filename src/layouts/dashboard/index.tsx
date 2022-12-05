@@ -23,8 +23,6 @@ export default function Dashboard(props: Props) {
     setMobileOpen(!mobileOpen);
   };
 
-  
-
   const container = Window !== undefined ? () => document.body : undefined;
 
   return (

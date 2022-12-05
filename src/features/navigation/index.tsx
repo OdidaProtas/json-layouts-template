@@ -1,25 +1,16 @@
-import React from "react";
-import { Route, Switch } from "react-router-dom";
-import renderPage from "../../util/renders/renderPage";
+import { Switch } from "react-router-dom";
+import PagesLoadFail from "../../uidata/PagesLoadFail";
+import renderPage from "../../util/components/renderPage";
+import useRoutes from "./useRoutes";
 
 interface INavigation {
   navData: any[];
 }
 
 export default function Navigation({ navData = [] }: INavigation) {
-  const routes = React.useMemo(
-    () =>
-      navData.map((route, index) => {
-        return (
-          <Route
-            exact={route.exact}
-            key={index}
-            component={() => renderPage(route.page)}
-            path={route.path}
-          />
-        );
-      }),
-    [navData]
-  );
+  const hasPages = navData.length;
+  const routes = useRoutes(navData);
+
+  if (!hasPages) return renderPage(PagesLoadFail);
   return <Switch>{routes}</Switch>;
 }

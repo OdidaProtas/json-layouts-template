@@ -1,13 +1,29 @@
+import "./index.css";
+
+import App from "./App";
+
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
-import "./index.css";
-import { BrowserRouter } from "react-router-dom";
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <App/>
-    </BrowserRouter>
-  </React.StrictMode>
-);
+import { BrowserRouter } from "react-router-dom";
+import { Window } from "./util/ui/window";
+
+if (import.meta.env.SSR && Window.exists()) {
+  ReactDOM.hydrateRoot(window?.document.getElementById("root")).render(
+    <React.StrictMode>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </React.StrictMode>
+  );
+}
+
+if (!import.meta.env.SSR) {
+  ReactDOM.createRoot(document.getElementById("root")).render(
+    <React.StrictMode>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </React.StrictMode>
+  );
+}

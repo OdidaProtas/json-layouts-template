@@ -4,6 +4,7 @@ import { useAxios } from "./useAxios";
 
 export default function usePages() {
   const pages = usePagesStateValue("pages");
+  
   const loadingPages = usePagesStateValue("loaders.pages");
 
   const { updatePages, togglePagesLoader } = useActions();
@@ -21,13 +22,14 @@ export default function usePages() {
     togglePagesLoader(false);
   }
 
+  const couldBeEmpty =
+    !pages.length &&
+    (loadingPages === null || loadingPages === undefined) &&
+    !loadingPages;
+
   React.useEffect(() => {
-    const couldBeEmpty =
-      !pages.length &&
-      (loadingPages === null || loadingPages === undefined) &&
-      !loadingPages;
     if (couldBeEmpty) updateAll();
-  }, []);
+  }, [couldBeEmpty]);
 
   return [...pages];
 }

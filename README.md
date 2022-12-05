@@ -1,1 +1,1 @@
-Cross platform pos-ui
+Cross platform json-layouts client.
