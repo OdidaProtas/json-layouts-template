@@ -1,7 +1,9 @@
 import React from "react";
+import { useAxios } from "./useAxios";
+import useParams from "@react-router-dom";
+
 import { usePagesStateDisptch, usePagesStateValue } from "../pages/provider";
 import { defaultTheme } from "../uidata/DefaultTheme";
-import { useAxios } from "./useAxios";
 
 export default function useTheme() {
   const theme = usePagesStateValue("theme") ?? defaultTheme;
@@ -35,9 +37,21 @@ export default function useTheme() {
 
 function useActions() {
   const dispatchToPages = usePagesStateDisptch();
+
+  const { id } = useParams();
+
   const theme = usePagesStateValue("theme");
   const loaders = usePagesStateValue("loaders");
   const loadingTheme = usePagesStateValue("loaders.theme");
+
+  const userError = usePagesStateValue("errors.users");
+  const userImage = usePagesStateValue(`users.id-${id}.imageurl`);
+  const defaultRole = usePagesStateValue(`users.id-${id}.roles.idx-1.id`);
+  
+  const permissions = usePagesStateValue(
+    `permissions.key-role,${defaultRole},.permits`
+  );
+
   const updateTheme = React.useCallback(
     (payload: any[]) => {
       const type = "update_all";

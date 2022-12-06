@@ -39,7 +39,7 @@ export const intents = {
   },
 };
 
-export default function doIntent({ clickAction: action, history }: any) {
+export default async function doIntent({ clickAction: action, history }: any) {
   if (intents.navigate.nextPage(action)) {
     const indexOfNewLocation = 1;
     const newLocation = (action ?? "").split(".")[indexOfNewLocation];

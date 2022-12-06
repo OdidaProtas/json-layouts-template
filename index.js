@@ -4,7 +4,7 @@ import { fileURLToPath } from "url";
 import express from "express";
 import { createServer as createViteServer } from "vite";
 
-require('dotenv').config()
+require("dotenv").config();
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -16,7 +16,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
   });
 
   app.use(vite.middlewares);
-  
+
   app.use("*", async (req, res, next) => {
     const url = req.originalUrl;
 
@@ -39,6 +39,6 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
     }
   });
 
-  app.listen(5173);
-  console.log("Express server started");
+  app.listen(process.env.PORT);
+  console.log("Express server started on PORT " + process.env.PORT);
 })();

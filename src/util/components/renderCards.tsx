@@ -1,5 +1,6 @@
 import renderComponents from "./renderComponents";
 import renderImage from "./renderImage";
+import renderStack from "./renderStack";
 import renderText from "./renderText";
 
 export default function renderCard(
@@ -12,12 +13,8 @@ export default function renderCard(
   const cardTitle = renderText(title, "h5");
   const cardText = renderText(text);
   const actionComponents = renderComponents(actions);
-  return (
-    <Box>
-      {cardImage}
-      {cardTitle}
-      {cardText}
-      {actionComponents}
-    </Box>
-  );
+  const stack = [cardImage, cardTitle, cardText, actionComponents];
+  const cardStack = renderStack(stack);
+
+  return <Box>{cardStack}</Box>;
 }

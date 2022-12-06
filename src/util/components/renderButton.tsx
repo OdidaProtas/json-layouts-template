@@ -9,5 +9,10 @@ export default function renderButton({
 }: any) {
   const history = useHistory();
   const intent = doIntent({ clickAction, history });
-  return <Button color={color} onClick={intent}>{text}</Button>;
+
+  return (
+    <Button color={color} onClick={intent}>
+      {text}
+    </Button>
+  );
 }

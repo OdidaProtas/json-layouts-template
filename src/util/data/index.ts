@@ -1,7 +1,3 @@
-
-
-
-
 export const stateValueReducer = (
   previousValue: any,
   currentValue: string,
@@ -19,10 +15,13 @@ export const stateValueReducer = (
     return (previousValue ?? []).find((item: any) => item.id === id);
   }
   if (/idx-/.test(currentValue)) {
-    return (previousValue ?? [])[currentValue];
+    const index = currentValue.split("-")[1];
+    return (previousValue ?? [])[index];
   }
   if (/key-/.test(currentValue)) {
-    return (previousValue ?? [])[currentValue];
+    const value = currentValue.split("-")[1];
+    const values = value.split(",");
+    return (previousValue ?? []).find((item: any) => item[values[0]] === value);
   }
   if (previousValue !== null || previousValue !== undefined)
     return previousValue;
