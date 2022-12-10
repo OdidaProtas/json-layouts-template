@@ -1,10 +1,12 @@
 import React from "react";
 import { usePagesStateDisptch, usePagesStateValue } from "../pages/provider";
+import builder from "../uidata/builder";
+import landingpage from "../uidata/landingpage";
 import { useAxios } from "./useAxios";
 
 export default function usePages() {
   const pages = usePagesStateValue("pages");
-  
+
   const loadingPages = usePagesStateValue("loaders.pages");
 
   const { updatePages, togglePagesLoader } = useActions();
@@ -15,7 +17,7 @@ export default function usePages() {
     const response = await axios.get("/pages");
     const data = response.data;
     if (data) {
-      updatePages(data);
+      updatePages([...[landingpage, builder], ...data]);
       togglePagesLoader(false);
       return;
     }

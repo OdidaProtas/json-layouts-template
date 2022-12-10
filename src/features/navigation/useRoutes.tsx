@@ -10,7 +10,7 @@ export default function useRoutes(navData: any) {
             <Route
               exact={route.exact}
               key={index}
-              component={() => renderPage(route.page)}
+              component={() => renderPage(route)}
               path={route.path}
             />
           );

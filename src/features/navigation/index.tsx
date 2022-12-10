@@ -1,6 +1,5 @@
 import { Switch } from "react-router-dom";
-import PagesLoadFail from "../../uidata/PagesLoadFail";
-import renderPage from "../../util/components/renderPage";
+import { ErrorBoundary } from "../errorBoundary";
 import useRoutes from "./useRoutes";
 
 interface INavigation {
@@ -8,9 +7,10 @@ interface INavigation {
 }
 
 export default function Navigation({ navData = [] }: INavigation) {
-  const hasPages = navData.length;
   const routes = useRoutes(navData);
-
-  if (!hasPages) return renderPage(PagesLoadFail);
-  return <Switch>{routes}</Switch>;
+  return (
+    <ErrorBoundary>
+      <Switch>{routes}</Switch>
+    </ErrorBoundary>
+  );
 }

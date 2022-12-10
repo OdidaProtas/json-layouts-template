@@ -42,10 +42,13 @@ export const intents = {
 export default async function doIntent({ clickAction: action, history }: any) {
   if (intents.navigate.nextPage(action)) {
     const indexOfNewLocation = 1;
-    const newLocation = (action ?? "").split(".")[indexOfNewLocation];
-    return () => history.push(newLocation);
+    const splitActionChar = ".";
+    const newLocation = (action ?? "").split(splitActionChar)[
+      indexOfNewLocation
+    ];
+    history.push(newLocation);
   }
   if (intents.navigate.goBack(action)) {
-    return () => history.goBack();
+    history.goBack();
   }
 }

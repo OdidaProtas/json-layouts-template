@@ -26,8 +26,8 @@ export default function renderComponents(components: any[] = []) {
         return renderGrid(gridItems, spacing);
       }
       case "button": {
-        const { color, text, clickAction, type } = data;
-        return renderButton({ color, text, clickAction });
+        const { color, text, clickAction, fullWidth, variant, sx={} } = data;
+        return renderButton({ color, text, clickAction, variant, fullWidth, sx });
       }
       case "card": {
         const { imageUrl, title, text, actions } = data;
@@ -45,7 +45,7 @@ export default function renderComponents(components: any[] = []) {
         return renderForm({});
       }
       case "checkbox": {
-        return <Checkbox />;
+        return <Checkbox key={index}/>;
       }
       case "textfield": {
         return renderTextField();

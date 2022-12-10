@@ -1,5 +1,10 @@
 import doIntent from "../intents";
 
-export default function useIntent(intent: string) {
-  return async (state: any) => await doIntent(intent);
+interface IUseIntent {
+  clickAction: string;
+  history?: any;
+}
+
+export default function useIntent(intent: IUseIntent) {
+  return async () => await doIntent(intent);
 }

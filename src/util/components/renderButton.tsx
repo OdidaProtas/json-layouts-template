@@ -1,18 +1,28 @@
-import { Button } from "@mui/material";
 import { useHistory } from "react-router-dom";
-import doIntent from "../../intents";
+import Button from "../../components/Button";
+import useIntent from "../../hooks/useIntent";
+
+export interface IButton {
+  color: "primary" | "secondary" | "error";
+  text: string;
+  clickAction: string;
+  fullWidth: boolean;
+  sx?: any;
+  variant?: "contained" | "outlined";
+}
 
 export default function renderButton({
   color = "primary",
   text = "",
   clickAction,
-}: any) {
+  fullWidth = false,
+  sx = {},
+  variant = "contained",
+}: IButton) {
   const history = useHistory();
-  const intent = doIntent({ clickAction, history });
+
 
   return (
-    <Button color={color} onClick={intent}>
-      {text}
-    </Button>
+    <Button text={text}  clickAction={clickAction} sx={sx} fullWidth={fullWidth} variant={variant} color={color} />
   );
 }
