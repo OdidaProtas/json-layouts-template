@@ -1,6 +1,6 @@
 ### JSON pages layout template.
 
-Hompage: 
+Hompage: <https://ds-json-layouts-template.web.app/>
 
 #### Built with.
 
