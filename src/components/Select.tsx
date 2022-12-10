@@ -7,7 +7,7 @@ import  InputLabel  from "@mui/material/InputLabel";
 
 import renderMenuItem from "../util/components/renderMenuItem";
 
-export default function Select({ options = [], loadingOptions = false }: any) {
+export default function Select({ options = [], loadingOptions = false, label, handleChange }: any) {
   const items = React.useMemo(
     () =>
       options.map((option: any) => renderMenuItem(option.label, option.value)),
@@ -15,12 +15,12 @@ export default function Select({ options = [], loadingOptions = false }: any) {
   );
   return (
     <FormControl fullWidth>
-      <InputLabel id="demo-simple-select-label">Role</InputLabel>
+      <InputLabel id="demo-simple-select-label">{label}</InputLabel>
       <MuiSelect
         labelId="demo-simple-select-label"
         id="demo-simple-select"
-        label="Role"
-        onChange={()=>{}}
+        label={label}
+        onChange={handleChange}
       >
         {items}
       </MuiSelect>

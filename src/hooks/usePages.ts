@@ -1,6 +1,6 @@
 import React from "react";
 import { usePagesStateDisptch, usePagesStateValue } from "../pages/provider";
-import builder from "../uidata/builder";
+import builder from "../uidata/app-form";
 import landingpage from "../uidata/landingpage";
 import { useAxios } from "./useAxios";
 

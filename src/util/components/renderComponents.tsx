@@ -1,4 +1,13 @@
-import { Divider, Checkbox, Chip, Switch, Badge, Avatar } from "@mui/material";
+import {
+  Divider,
+  Checkbox,
+  Chip,
+  Switch,
+  Badge,
+  Avatar,
+  FormGroup,
+  FormControlLabel,
+} from "@mui/material";
 
 import renderCard from "./renderCards";
 import renderGrid from "./renderGrid";
@@ -16,6 +25,8 @@ import renderList from "./renderList";
 import renderAlert from "./renderAlert";
 import renderTooltip from "./renderTooltip";
 import renderRating from "./renderRating";
+import renderImageField from "./renderImageField";
+import renderTransferList from "./renderTransferList";
 
 export default function renderComponents(components: any[] = []) {
   return components.map((component, index) => {
@@ -49,13 +60,15 @@ export default function renderComponents(components: any[] = []) {
         return renderTable(headers, rows);
       }
       case "form": {
-        return renderForm({});
+        const { components, label }: any = data;
+        return renderForm({ components, label });
       }
       case "checkbox": {
         return <Checkbox key={index} />;
       }
       case "textfield": {
-        return renderTextField();
+        const { label } = data;
+        return renderTextField({ label });
       }
       case "appbar": {
         return renderAppbar();
@@ -66,14 +79,24 @@ export default function renderComponents(components: any[] = []) {
         return renderRating();
       }
       case "select": {
-        return renderSelect();
+        const { options, label } = data;
+        return renderSelect({ options, label });
       }
       case "slider": {
       }
       case "switch": {
-        return <Switch />;
+        const { label } = data;
+        return (
+          <FormGroup>
+            <FormControlLabel
+              control={<Switch defaultChecked={false} />}
+              label={label}
+            />
+          </FormGroup>
+        );
       }
       case "transfer_list": {
+        return renderTransferList()
       }
       case "toggle_button": {
       }
@@ -98,11 +121,15 @@ export default function renderComponents(components: any[] = []) {
         return renderTooltip();
       }
       case "text": {
-        const { text } = data as any;
-        return renderText(text);
+        const { text, variant } = data as any;
+        return renderText(text, variant);
       }
       case "alert": {
         return renderAlert();
+      }
+      case "imagefield": {
+        const { desc, value, handleChange } = data;
+        return renderImageField({ desc, value, handleChange });
       }
       default: {
         return (
