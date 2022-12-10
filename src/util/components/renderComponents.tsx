@@ -26,8 +26,15 @@ export default function renderComponents(components: any[] = []) {
         return renderGrid(gridItems, spacing);
       }
       case "button": {
-        const { color, text, clickAction, fullWidth, variant, sx={} } = data;
-        return renderButton({ color, text, clickAction, variant, fullWidth, sx });
+        const { color, text, clickAction, fullWidth, variant, sx = {} } = data;
+        return renderButton({
+          color,
+          text,
+          clickAction,
+          variant,
+          fullWidth,
+          sx,
+        });
       }
       case "card": {
         const { imageUrl, title, text, actions } = data;
@@ -45,7 +52,7 @@ export default function renderComponents(components: any[] = []) {
         return renderForm({});
       }
       case "checkbox": {
-        return <Checkbox key={index}/>;
+        return <Checkbox key={index} />;
       }
       case "textfield": {
         return renderTextField();
@@ -85,7 +92,7 @@ export default function renderComponents(components: any[] = []) {
       case "icons": {
       }
       case "list": {
-        return renderList();
+        return renderList({ children: null });
       }
       case "tooltip": {
         return renderTooltip();

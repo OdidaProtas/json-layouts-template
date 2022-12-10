@@ -1,7 +1,7 @@
 import doIntent from "../intents";
 
 interface IUseIntent {
-  clickAction: string;
+  clickAction?: string;
   history?: any;
 }
 

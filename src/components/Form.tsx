@@ -13,7 +13,7 @@ export default function Form({ components = [], intents = {} }: any) {
 
   const { submitAction, submitSuccessCallback, submitSuccessError } = intents;
 
-  const onSubmitForm = useIntent(submitAction);
+  const onSubmitForm = useIntent({});
   const onSubmitFormSuccess = useIntent(submitSuccessCallback);
   const onsubmitFormError = useIntent(submitSuccessError);
 
@@ -28,14 +28,14 @@ export default function Form({ components = [], intents = {} }: any) {
   const handleSubmit = React.useCallback(
     async (e: any) => {
       setLoading(true);
-      const [res, error]: any = await onSubmitForm({ ...state });
+      const [res, error]: any = await onSubmitForm();
       if (res) {
-        const isSuccess = await onSubmitFormSuccess(submitAction);
-        if (isSuccess) setLoading(false);
+        const isSuccess = await onSubmitFormSuccess();
+        if (true) setLoading(false);
         return;
       }
-      const isErr = await onsubmitFormError(error);
-      if (isErr) setLoading(false);
+      const isErr = await onsubmitFormError();
+      if (true) setLoading(false);
     },
     [state, loading]
   );

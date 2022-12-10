@@ -1,3 +1,5 @@
+import Box from  '@mui/material/Box'
+
 import renderComponents from "./renderComponents";
 import renderImage from "./renderImage";
 import renderStack from "./renderStack";

@@ -1,5 +1,7 @@
 ### JSON pages layout template.
 
+Hompage: 
+
 #### Built with.
 
 1. React.js

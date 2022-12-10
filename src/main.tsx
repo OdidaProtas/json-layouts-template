@@ -9,7 +9,8 @@ import { BrowserRouter } from "react-router-dom";
 import { Window } from "./util/ui/window";
 
 if (import.meta.env.SSR && Window.exists()) {
-  ReactDOM.hydrateRoot(window?.document.getElementById("root")).render(
+  ReactDOM.hydrateRoot(
+    window.document.getElementById("root"),
     <React.StrictMode>
       <BrowserRouter>
         <App />
