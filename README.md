@@ -66,5 +66,5 @@ Some plugins are only available for specific platforms.
 Requires knowledge of Java for Android, Swift for Ios and Typescript for electron.
 
 #### Custom plugins instructions
-Android and ios. <https://capacitorjs.com/docs/plugins/creating-plugins>
-Electron: <https://capacitor-community.github.io/electron/docs/creatingplugins>
+1. Android and ios. <https://capacitorjs.com/docs/plugins/creating-plugins>
+2. Electron: <https://capacitor-community.github.io/electron/docs/creatingplugins>
