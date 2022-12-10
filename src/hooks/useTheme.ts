@@ -1,6 +1,6 @@
 import React from "react";
 import { useAxios } from "./useAxios";
-import useParams from "@react-router-dom";
+import {useParams} from "react-router-dom";
 
 import { usePagesStateDisptch, usePagesStateValue } from "../pages/provider";
 import { defaultTheme } from "../uidata/DefaultTheme";
@@ -38,7 +38,7 @@ export default function useTheme() {
 function useActions() {
   const dispatchToPages = usePagesStateDisptch();
 
-  const { id } = useParams();
+  const { id } = useParams() as any;
 
   const theme = usePagesStateValue("theme");
   const loaders = usePagesStateValue("loaders");
