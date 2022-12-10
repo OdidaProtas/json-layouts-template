@@ -8,7 +8,7 @@ Hompage: <https://ds-json-layouts-template.web.app/>
 
 #### Built with.
 
-1. React.js
+1. React.js (Context API)
 2. Materail UI.
 3. Vite
 5. Typescript
@@ -25,8 +25,10 @@ Hompage: <https://ds-json-layouts-template.web.app/>
 
 #### Env
 `VITE_APP_LAYOUTS_URL=https://builder.vercel.app/api
+
 PORT=5173
-VITE_APP_KEY=''`
+
+VITE_APP_KEY='*'`
 
 #### Web (CSR && SSR) setup instructions.
 
