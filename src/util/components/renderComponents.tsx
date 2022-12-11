@@ -49,6 +49,8 @@ export default function renderComponents(components: any[] = []) {
           variant,
           sx = {},
           disabled,
+          href,
+          target,
         } = data;
         return renderButton({
           color,
@@ -58,6 +60,8 @@ export default function renderComponents(components: any[] = []) {
           fullWidth,
           sx,
           disabled,
+          href,
+          target
         });
       }
       case "card": {

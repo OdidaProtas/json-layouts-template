@@ -10,9 +10,27 @@ export default function Button({
   sx = {},
   variant = "contained",
   disabled = false,
+  href,
+  target,
 }: any) {
   const history = useHistory();
   const intent = useIntent({ clickAction, history });
+
+  if (href && target) {
+    return (
+      <MuiButton
+        sx={sx}
+        fullWidth={fullWidth}
+        variant={variant}
+        color={color}
+        disableElevation
+        href={href}
+        target={target}
+      >
+        {text}
+      </MuiButton>
+    );
+  }
 
   return (
     <MuiButton

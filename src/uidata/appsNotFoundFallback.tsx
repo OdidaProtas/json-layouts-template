@@ -32,7 +32,9 @@ export default {
                   type: "button",
                   data: {
                     text: "Create a new app",
-                    disabled: true,
+                    href: "https://json-layouts-api-template.vercel.app/",
+                    target: "blank",
+                    sx: "mt:4",
                   },
                 },
               ],
