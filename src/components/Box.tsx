@@ -1,6 +1,10 @@
-import MuiBox from "@mui/material/Box";
-import React from "react";
+import React, { Suspense } from "react";
 import renderComponents from "../util/components/renderComponents";
+
+import Skeleton from "@mui/material/Skeleton";
+import { ErrorBoundary } from "../features/errorBoundary";
+
+const MuiBox = React.lazy(() => import("@mui/material/Box"));
 
 export default function Box({
   components = [],
@@ -23,7 +27,15 @@ export default function Box({
   if (minHeight) sx.minHeight = minHeight;
   if (textAlign) sx.textAlign = "center";
 
-  return <MuiBox sx={{ ...sx }}>{children}</MuiBox>;
+  const suspenseFallback = () => <Skeleton variant="rectangular" />;
+
+  return (
+    <ErrorBoundary>
+      <Suspense fallback={suspenseFallback()}>
+        <MuiBox sx={{ ...sx }}>{children}</MuiBox>;
+      </Suspense>
+    </ErrorBoundary>
+  );
 }
 
 export interface IBox {
