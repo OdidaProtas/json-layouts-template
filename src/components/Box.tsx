@@ -2,15 +2,6 @@ import MuiBox from "@mui/material/Box";
 import React from "react";
 import renderComponents from "../util/components/renderComponents";
 
-export interface IBox {
-  flex?: boolean;
-  centerHorizontal?: boolean;
-  centerVertical?: boolean;
-  minHeight?: any;
-  textAlign?: string;
-  components?: any[];
-}
-
 export default function Box({
   components = [],
   flex = false,
@@ -19,8 +10,6 @@ export default function Box({
   minHeight = "100%",
   textAlign = "left",
 }: IBox) {
-
-    
   const children = React.useMemo(
     () => renderComponents(components),
     [components]
@@ -31,8 +20,17 @@ export default function Box({
   if (flex) sx.display = "flex";
   if (centerHorizontal) sx.justifyContent = "center";
   if (centerVertical) sx.alignItems = "center";
-  if (minHeight) sx.minHeight = "minHeight";
+  if (minHeight) sx.minHeight = minHeight;
   if (textAlign) sx.textAlign = "center";
 
   return <MuiBox sx={{ ...sx }}>{children}</MuiBox>;
+}
+
+export interface IBox {
+  flex?: boolean;
+  centerHorizontal?: boolean;
+  centerVertical?: boolean;
+  minHeight?: any;
+  textAlign?: string;
+  components?: any[];
 }
