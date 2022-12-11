@@ -9,6 +9,7 @@ export interface IButton {
   fullWidth: boolean;
   sx?: any;
   variant?: "contained" | "outlined";
+  disabled:boolean
 }
 
 export default function renderButton({
@@ -18,11 +19,10 @@ export default function renderButton({
   fullWidth = false,
   sx = {},
   variant = "contained",
+  disabled = true
 }: IButton) {
   const history = useHistory();
-
-
   return (
-    <Button text={text}  clickAction={clickAction} sx={sx} fullWidth={fullWidth} variant={variant} color={color} />
+    <Button disabled={disabled} text={text}  clickAction={clickAction} sx={sx} fullWidth={fullWidth} variant={variant} color={color} />
   );
 }

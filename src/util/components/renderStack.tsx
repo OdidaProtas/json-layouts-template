@@ -1,6 +1,10 @@
 import { Stack } from "@mui/material";
-import React from 'react'
+import React from "react";
 
 export default function renderStack(children: React.ReactNode, spacing = 2) {
-  return <Stack spacing={spacing}>{children}</Stack>;
+  return (
+    <Stack sx={{ textAlign: "inherit" }} spacing={spacing}>
+      {children}
+    </Stack>
+  );
 }
