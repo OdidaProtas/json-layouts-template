@@ -4,7 +4,7 @@ export default function renderFallbackSkeletons(components: any[]) {
   return components.map((component: any, index: number) => {
     switch (component.type) {
       default: {
-        return <Skeleton variant="rectangular" />;
+        return <Skeleton key={index} variant="rectangular" />;
       }
     }
   });
