@@ -33,7 +33,17 @@ export const intents = {
       return /hide_toast./.test(action);
     },
   },
-  filter: {},
+  filter: {
+    sort(action: string) {
+      return /sort./.test(action);
+    },
+    search(action: string) {
+      return /search./.test(action);
+    },
+    filterBy(action: string) {
+      return /filter_by./.test(action);
+    },
+  },
   crud: {
     delete(action: string) {
       return /delete_record./.test(action);
@@ -44,8 +54,19 @@ export const intents = {
     update(action: string) {
       return /update_record./.test(action);
     },
+    
   },
 };
+
+interface IDoIntent {
+  clickAction: string;
+  history: any;
+  item: any;
+  axios: any;
+  successCb: any;
+  errorCb: any;
+  progressCb: any;
+}
 
 export default async function doIntent({
   clickAction: action,
@@ -55,7 +76,7 @@ export default async function doIntent({
   successCb,
   errorCb,
   progressCb,
-}: any) {
+}: IDoIntent) {
   if (intents.navigate.nextPage(action)) {
     const indexOfNewLocation = 1;
     const splitActionChar = ".";
@@ -82,7 +103,7 @@ export default async function doIntent({
       }
     } catch (e) {
       if (errorCb) {
-        errorCb(false);
+        errorCb(e);
         progressCb(false);
       }
     }
@@ -101,7 +122,7 @@ export default async function doIntent({
       }
     } catch (e) {
       if (errorCb) {
-        errorCb(false);
+        errorCb(e);
         progressCb(false);
       }
     }
@@ -120,7 +141,7 @@ export default async function doIntent({
       }
     } catch (e) {
       if (errorCb) {
-        errorCb(false);
+        errorCb(e);
         progressCb(false);
       }
     }
