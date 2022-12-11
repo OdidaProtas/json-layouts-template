@@ -4,7 +4,6 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev-server": "ts-node api/index.ts",
     "ssr": "node index.js",
     "serve-dev": "concurrently --kill-others \"npm run dev-server\" \"npm run start-dev\"",
     "dev": "vite",
