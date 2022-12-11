@@ -35,11 +35,27 @@ export const intents = {
   },
   filter: {},
   crud: {
-    delete() {},
+    delete(action: string) {
+      return /delete_record./.test(action);
+    },
+    save(action: string) {
+      return /save_record./.test(action);
+    },
+    update(action: string) {
+      return /update_record./.test(action);
+    },
   },
 };
 
-export default async function doIntent({ clickAction: action, history }: any) {
+export default async function doIntent({
+  clickAction: action,
+  history,
+  item,
+  axios,
+  successCb,
+  errorCb,
+  progressCb,
+}: any) {
   if (intents.navigate.nextPage(action)) {
     const indexOfNewLocation = 1;
     const splitActionChar = ".";
@@ -47,8 +63,67 @@ export default async function doIntent({ clickAction: action, history }: any) {
       indexOfNewLocation
     ];
     history.push(newLocation);
+    return;
   }
   if (intents.navigate.goBack(action)) {
     history.goBack();
+    return;
+  }
+  if (intents.crud.delete(action)) {
+    const { itemId, referenceTable } = item;
+    try {
+      if (progressCb) {
+        progressCb(true);
+      }
+      const response = axios.delete(`/${referenceTable}/${itemId}`);
+      if (successCb) {
+        successCb(response.data);
+        progressCb(false);
+      }
+    } catch (e) {
+      if (errorCb) {
+        errorCb(false);
+        progressCb(false);
+      }
+    }
+    return;
+  }
+  if (intents.crud.save(action)) {
+    const { referenceTable } = item;
+    try {
+      if (progressCb) {
+        progressCb(true);
+      }
+      const response = axios.post(`/${referenceTable}`, { ...item });
+      if (successCb) {
+        successCb(response.data);
+        progressCb(false);
+      }
+    } catch (e) {
+      if (errorCb) {
+        errorCb(false);
+        progressCb(false);
+      }
+    }
+    return;
+  }
+  if (intents.crud.update(action)) {
+    const { itemId, referenceTable } = item;
+    try {
+      if (progressCb) {
+        progressCb(true);
+      }
+      const response = axios.put(`/${referenceTable}/${itemId}`);
+      if (successCb) {
+        successCb(response.data);
+        progressCb(false);
+      }
+    } catch (e) {
+      if (errorCb) {
+        errorCb(false);
+        progressCb(false);
+      }
+    }
+    return;
   }
 }

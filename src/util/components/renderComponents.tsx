@@ -30,6 +30,7 @@ import renderImageField from "./renderImageField";
 import renderTransferList from "./renderTransferList";
 import renderBox from "./renderBox";
 import { IBox } from "../../components/Box";
+import renderTabs from "./display/renderTabs";
 
 export default function renderComponents(components: any[] = []) {
   return components.map((component, index) => {
@@ -40,7 +41,15 @@ export default function renderComponents(components: any[] = []) {
         return renderGrid(gridItems, spacing);
       }
       case "button": {
-        const { color, text, clickAction, fullWidth, variant, sx = {} } = data;
+        const {
+          color = "primary",
+          text,
+          clickAction,
+          fullWidth,
+          variant,
+          sx = {},
+          disabled,
+        } = data;
         return renderButton({
           color,
           text,
@@ -48,6 +57,7 @@ export default function renderComponents(components: any[] = []) {
           variant,
           fullWidth,
           sx,
+          disabled,
         });
       }
       case "card": {
@@ -73,6 +83,9 @@ export default function renderComponents(components: any[] = []) {
         const { label } = data;
         return renderTextField({ label });
       }
+      case "tabs": {
+        return renderTabs();
+      }
       case "box": {
         const {
           components,
@@ -80,7 +93,7 @@ export default function renderComponents(components: any[] = []) {
           centerVertical,
           minHeight,
           flex,
-          textAlign
+          textAlign,
         }: IBox = data;
         return renderBox({
           components,
@@ -88,7 +101,7 @@ export default function renderComponents(components: any[] = []) {
           centerVertical,
           minHeight,
           flex,
-          textAlign
+          textAlign,
         });
       }
       case "circular_progress": {

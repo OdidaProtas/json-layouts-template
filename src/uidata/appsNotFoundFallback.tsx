@@ -28,6 +28,13 @@ export default {
                     text: "Sorry, but no apps have been added yet!",
                   },
                 },
+                {
+                  type: "button",
+                  data: {
+                    text: "Create a new app",
+                    disabled: true,
+                  },
+                },
               ],
             },
           },
