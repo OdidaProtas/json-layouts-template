@@ -6,7 +6,7 @@ export default function renderBox({
   centerHorizontal = false,
   centerVertical = false,
   minHeight = "100%",
-  textAlign
+  textAlignp
 }: IBox) {
   return (
     <Box
