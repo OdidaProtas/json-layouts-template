@@ -7,6 +7,7 @@ import {
   Avatar,
   FormGroup,
   FormControlLabel,
+  CircularProgress,
 } from "@mui/material";
 
 import renderCard from "./renderCards";
@@ -27,6 +28,8 @@ import renderTooltip from "./renderTooltip";
 import renderRating from "./renderRating";
 import renderImageField from "./renderImageField";
 import renderTransferList from "./renderTransferList";
+import renderBox from "./renderBox";
+import { IBox } from "../../components/Box";
 
 export default function renderComponents(components: any[] = []) {
   return components.map((component, index) => {
@@ -48,7 +51,7 @@ export default function renderComponents(components: any[] = []) {
         });
       }
       case "card": {
-        const { imageUrl, title, text, actions } = data;
+        const { imageUrl = "", title, text, actions } = data;
         return renderCard(imageUrl, title, text, actions);
       }
       case "image": {
@@ -69,6 +72,27 @@ export default function renderComponents(components: any[] = []) {
       case "textfield": {
         const { label } = data;
         return renderTextField({ label });
+      }
+      case "box": {
+        const {
+          components,
+          centerHorizontal,
+          centerVertical,
+          minHeight,
+          flex,
+          textAlign
+        }: IBox = data;
+        return renderBox({
+          components,
+          centerHorizontal,
+          centerVertical,
+          minHeight,
+          flex,
+          textAlign
+        });
+      }
+      case "circular_progress": {
+        return <CircularProgress />;
       }
       case "appbar": {
         return renderAppbar();
@@ -96,7 +120,7 @@ export default function renderComponents(components: any[] = []) {
         );
       }
       case "transfer_list": {
-        return renderTransferList()
+        return renderTransferList();
       }
       case "toggle_button": {
       }
