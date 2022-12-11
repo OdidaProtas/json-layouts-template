@@ -6,6 +6,7 @@ import { useAxios } from "./useAxios";
 
 export default function usePages() {
   const pages = usePagesStateValue("pages");
+  const appId = usePagesStateValue("appId");
 
   const loadingPages = usePagesStateValue("loaders.pages");
 
@@ -30,8 +31,8 @@ export default function usePages() {
     !loadingPages;
 
   React.useEffect(() => {
-    if (couldBeEmpty) updateAll();
-  }, [couldBeEmpty]);
+    if (couldBeEmpty && appId) updateAll();
+  }, [couldBeEmpty, appId]);
 
   return [...pages];
 }

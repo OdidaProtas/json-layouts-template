@@ -1,6 +1,21 @@
-import React from "react";
-import Box from "@mui/material/Box";
+import Box, { IBox } from "../../components/Box";
 
-export default function renderBox(children: React.ReactNode, sx: any = {}) {
-  return <Box sx={sx}>{children}</Box>;
+export default function renderBox({
+  components = [],
+  flex = false,
+  centerHorizontal = false,
+  centerVertical = false,
+  minHeight = "100%",
+  textAlign
+}: IBox) {
+  return (
+    <Box
+      minHeight={minHeight}
+      centerVertical={centerVertical}
+      flex={flex}
+      centerHorizontal={centerHorizontal}
+      components={components}
+      textAlign={textAlign}
+    />
+  );
 }
