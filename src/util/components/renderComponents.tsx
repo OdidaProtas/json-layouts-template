@@ -4,10 +4,10 @@ import {
   Chip,
   Switch,
   Badge,
-  Avatar,
   FormGroup,
   FormControlLabel,
   CircularProgress,
+  Paper,
 } from "@mui/material";
 
 import renderCard from "./renderCards";
@@ -32,13 +32,15 @@ import renderBox from "./renderBox";
 import { IBox } from "../../components/Box";
 import renderTabs from "./display/renderTabs";
 
+import Avatar from "../../components/Avatar";
+
 export default function renderComponents(components: any[] = []) {
   return components.map((component, index) => {
     const { type, data } = component;
     switch (type) {
       case "grid": {
-        const { gridItems = [], spacing } = data;
-        return renderGrid(gridItems, spacing);
+        const { components = [], spacing = 2 }: any = data;
+        return renderGrid({ components, spacing });
       }
       case "button": {
         const {
@@ -61,7 +63,7 @@ export default function renderComponents(components: any[] = []) {
           sx,
           disabled,
           href,
-          target
+          target,
         });
       }
       case "card": {
@@ -90,6 +92,14 @@ export default function renderComponents(components: any[] = []) {
       case "tabs": {
         return renderTabs();
       }
+      case "paper": {
+        const { elevation = 1, padding = 2, components: cmps = [] }: any = data;
+        return (
+          <Paper elevation={elevation} sx={{ p: padding }}>
+            {renderComponents(cmps)}
+          </Paper>
+        );
+      }
       case "box": {
         const {
           components,
@@ -98,6 +108,7 @@ export default function renderComponents(components: any[] = []) {
           minHeight,
           flex,
           textAlign,
+          spaceEvenly,
         }: IBox = data;
         return renderBox({
           components,
@@ -106,6 +117,7 @@ export default function renderComponents(components: any[] = []) {
           minHeight,
           flex,
           textAlign,
+          spaceEvenly,
         });
       }
       case "circular_progress": {
@@ -142,7 +154,8 @@ export default function renderComponents(components: any[] = []) {
       case "toggle_button": {
       }
       case "avatar": {
-        return <Avatar />;
+        const { clickAction = "" } = data;
+        return <Avatar clickAction={clickAction} />;
       }
       case "badge": {
         return <Badge />;

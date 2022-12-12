@@ -21,10 +21,7 @@ const defaultPageProps = { layout: "", name: "Page", components: [], opts: {} };
 export default function renderPage(page: Ipage = defaultPageProps) {
   const { layout, components, name, opts } = page;
 
-  const children = React.useMemo(
-    () => renderStack(renderComponents(components)),
-    [components]
-  );
+  const children = renderStack(renderComponents(components));
 
   switch (layout) {
     case "page": {

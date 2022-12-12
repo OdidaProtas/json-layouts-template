@@ -1,4 +1,5 @@
 import doIntent from "../intents";
+import { usePagesStateDisptch } from "../pages/provider";
 import { useAxios } from "./useAxios";
 
 interface IUseIntent {
@@ -9,5 +10,6 @@ interface IUseIntent {
 
 export default function useIntent(intent: IUseIntent) {
   const axios = useAxios();
-  return async () => await doIntent({ ...intent, axios } as any);
+  const dispatch = usePagesStateDisptch();
+  return async () => await doIntent({ ...intent, axios, dispatch } as any);
 }

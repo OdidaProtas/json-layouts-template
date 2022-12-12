@@ -6,7 +6,8 @@ export default function renderBox({
   centerHorizontal = false,
   centerVertical = false,
   minHeight = "100%",
-  textAlign
+  textAlign,
+  spaceEvenly = false
 }: IBox) {
   return (
     <Box
@@ -16,6 +17,7 @@ export default function renderBox({
       centerHorizontal={centerHorizontal}
       components={components}
       textAlign={textAlign}
+      spaceEvenly={spaceEvenly}
     />
   );
 }

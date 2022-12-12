@@ -1,6 +1,6 @@
 export default {
   layout: "page",
-  name: "Loading apps",
+  name: "App not created",
   components: [
     {
       type: "box",
@@ -18,25 +18,25 @@ export default {
                 {
                   type: "text",
                   data: {
-                    text: "Apps loading failed.",
-                    variant: "h5",
+                    text: "Hello World",
+                    variant: "h1",
                   },
                 },
                 {
                   type: "text",
                   data: {
-                    text: "Sorry, but no apps have been added yet!",
+                    text: "Sorry, but no pages have been added yet!",
                   },
                 },
                 {
                   type: "button",
                   data: {
-                    text: "Create a new app",
+                    text: "Add pages to this app",
                     href: "https://json-layouts-api-template.vercel.app/api/auth/signin",
                     target: "blank",
                     sx: "mt:4",
                   },
-                },
+                }
               ],
             },
           },

@@ -1,6 +1,4 @@
-import { useHistory } from "react-router-dom";
 import Button from "../../components/Button";
-import useIntent from "../../hooks/useIntent";
 
 export interface IButton {
   color: "primary" | "secondary" | "error";
@@ -25,7 +23,6 @@ export default function renderButton({
   target,
   href,
 }: IButton) {
-  const history = useHistory();
   return (
     <Button
       disabled={disabled}

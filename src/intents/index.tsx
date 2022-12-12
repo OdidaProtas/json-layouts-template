@@ -54,7 +54,11 @@ export const intents = {
     update(action: string) {
       return /update_record./.test(action);
     },
-    
+  },
+  state: {
+    updateStateValue(action: string) {
+      return /update_state_value/.test(action);
+    },
   },
 };
 
@@ -66,6 +70,7 @@ interface IDoIntent {
   successCb: any;
   errorCb: any;
   progressCb: any;
+  dispatch: Function;
 }
 
 export default async function doIntent({
@@ -76,6 +81,7 @@ export default async function doIntent({
   successCb,
   errorCb,
   progressCb,
+  dispatch,
 }: IDoIntent) {
   if (intents.navigate.nextPage(action)) {
     const indexOfNewLocation = 1;
@@ -146,5 +152,21 @@ export default async function doIntent({
       }
     }
     return;
+  }
+  if (intents.state.updateStateValue(action)) {
+    const intentExtras = action.split("-");
+    const key = intentExtras[1];
+    let value;
+    try {
+      value = JSON.parse(intentExtras[2]);
+    } catch (e) {
+      value = intentExtras[2];
+    }
+    const type = "update_all";
+    dispatch({
+      type,
+      key,
+      payload: value,
+    });
   }
 }
