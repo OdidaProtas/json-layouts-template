@@ -15,14 +15,19 @@ export default function usePages() {
 
   async function updateAll() {
     togglePagesLoader(true);
-    const response = await axios.get("/pages");
-    const data = response.data;
-    if (data) {
-      updatePages([...[landingpage, builder], ...data]);
+    try {
+      const response = await axios.get("/pages");
+      const data = response.data;
+      if (data) {
+        updatePages([...[landingpage, builder], ...data]);
+        togglePagesLoader(false);
+        return;
+      }
       togglePagesLoader(false);
-      return;
+    } catch (e) {
+      console.error(e);
+      togglePagesLoader(false);
     }
-    togglePagesLoader(false);
   }
 
   const couldBeEmpty =

@@ -15,26 +15,12 @@ export default {
             data: {
               textAlign: "center",
               components: [
+                { type: "circular_progress" },
                 {
                   type: "text",
                   data: {
-                    text: "Apps loading failed.",
+                    text: "Loading application...",
                     variant: "h5",
-                  },
-                },
-                {
-                  type: "text",
-                  data: {
-                    text: "Sorry, but no apps have been added yet!",
-                  },
-                },
-                {
-                  type: "button",
-                  data: {
-                    text: "Create a new app",
-                    href: "https://json-layouts-api-template.vercel.app/api/auth/signin",
-                    target: "blank",
-                    sx: "mt:4",
                   },
                 },
               ],

@@ -9,11 +9,13 @@ const MuiBox = React.lazy(() => import("@mui/material/Box"));
 export default function Box({
   components = [],
   flex = false,
+  spaceEvenly = false,
   centerHorizontal = false,
   centerVertical = false,
   minHeight = "100%",
   textAlign = "left",
 }: IBox) {
+  
   const children = React.useMemo(
     () => renderComponents(components),
     [components]
@@ -26,13 +28,14 @@ export default function Box({
   if (centerVertical) sx.alignItems = "center";
   if (minHeight) sx.minHeight = minHeight;
   if (textAlign) sx.textAlign = "center";
+  if (centerHorizontal) sx.justifyConytent = "space-between";
 
   const suspenseFallback = () => <Skeleton variant="rectangular" />;
 
   return (
     <ErrorBoundary>
       <Suspense fallback={suspenseFallback()}>
-        <MuiBox sx={{ ...sx }}>{children}</MuiBox>;
+        <MuiBox sx={{ ...sx }}>{children}</MuiBox>
       </Suspense>
     </ErrorBoundary>
   );
@@ -45,4 +48,5 @@ export interface IBox {
   minHeight?: any;
   textAlign?: string;
   components?: any[];
+  spaceEvenly: boolean;
 }
