@@ -16,7 +16,7 @@ export default function usePages() {
   async function updateAll() {
     togglePagesLoader(true);
     try {
-      const response = await axios.get(`/api/page/${appId}`);
+      const response = await axios.get(`/page/${appId}`);
       const data = response.data;
       if (data) {
         updatePages(
