@@ -13,7 +13,7 @@ import appList from "../uidata/app-list";
 
 export default function Pages() {
   const apps = useApps();
-  const appsLoaded = apps.length;
+  const appsLoaded = Boolean(apps);
 
   const loadingApps = usePagesStateValue("loaders.apps");
   const activeAppId = usePagesStateValue("appId");
@@ -24,7 +24,7 @@ export default function Pages() {
   const theme = useTheme();
 
   if (loadingApps) return renderPage(appsLoaderFallback);
-  if (appsLoaded && noActiveApp) return renderPage(appList);
+  if (appsLoaded && noActiveApp) return renderPage(apps);
   if (!appsLoaded) return renderPage(appsNotFoundFallback);
 
   return (

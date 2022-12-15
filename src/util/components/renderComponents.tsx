@@ -15,10 +15,6 @@ import renderGrid from "./renderGrid";
 import renderText from "./renderText";
 
 import renderButton from "./renderButton";
-import DefaultComponent from "../../components/DefaultComponent";
-import renderImage from "./renderImage";
-import renderTable from "./renderTable";
-import renderForm from "./renderForm";
 import renderTextField from "./renderTextField";
 import renderAppbar from "./renderAppbar";
 import renderSelect from "./renderSelect";
@@ -27,16 +23,22 @@ import renderAlert from "./renderAlert";
 import renderTooltip from "./renderTooltip";
 import renderRating from "./renderRating";
 import renderImageField from "./renderImageField";
-import renderTransferList from "./renderTransferList";
 import renderBox from "./renderBox";
-import { IBox } from "../../components/Box";
+import renderImage from "./renderImage";
+import renderTable from "./renderTable";
+import renderForm from "./renderForm";
 import renderTabs from "./display/renderTabs";
-
-import Avatar from "../../components/Avatar";
+import DefaultComponent from "../../components/DefaultComponent";
+import { IBox } from "../../components/Box";
 
 export default function renderComponents(components: any[] = []) {
   return components.map((component, index) => {
-    const { type, data } = component;
+    const {
+      type,
+      data = {
+        components: [],
+      },
+    } = component;
     switch (type) {
       case "grid": {
         const { components = [], spacing = 2 }: any = data;
@@ -79,7 +81,7 @@ export default function renderComponents(components: any[] = []) {
         return renderTable(headers, rows);
       }
       case "form": {
-        const { components, label }: any = data;
+        const { components = [], label }: any = data;
         return renderForm({ components, label });
       }
       case "checkbox": {
@@ -102,7 +104,7 @@ export default function renderComponents(components: any[] = []) {
       }
       case "box": {
         const {
-          components,
+          components = [],
           centerHorizontal,
           centerVertical,
           minHeight,
@@ -132,7 +134,7 @@ export default function renderComponents(components: any[] = []) {
         return renderRating();
       }
       case "select": {
-        const { options, label } = data;
+        const { options = [], label } = data;
         return renderSelect({ options, label });
       }
       case "slider": {
@@ -149,13 +151,13 @@ export default function renderComponents(components: any[] = []) {
         );
       }
       case "transfer_list": {
-        return renderTransferList();
+        // return renderBox({});
       }
       case "toggle_button": {
       }
       case "avatar": {
         const { clickAction = "" } = data;
-        return <Avatar clickAction={clickAction} />;
+        // return <Avatar clickAction={clickAction} />;
       }
       case "badge": {
         return <Badge />;

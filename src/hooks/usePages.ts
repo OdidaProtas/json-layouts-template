@@ -16,10 +16,15 @@ export default function usePages() {
   async function updateAll() {
     togglePagesLoader(true);
     try {
-      const response = await axios.get("/pages");
+      const response = await axios.get(`/api/page/${appId}`);
       const data = response.data;
       if (data) {
-        updatePages([...[landingpage, builder], ...data]);
+        updatePages(
+          [...[landingpage, builder], ...data].map((r) => ({
+            ...React,
+            path: "/",
+          }))
+        );
         togglePagesLoader(false);
         return;
       }
