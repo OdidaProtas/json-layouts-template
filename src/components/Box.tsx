@@ -15,7 +15,6 @@ export default function Box({
   minHeight = "100%",
   textAlign = "left",
 }: IBox) {
-  
   const children = React.useMemo(
     () => renderComponents(components),
     [components]

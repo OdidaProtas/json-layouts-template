@@ -1,10 +1,10 @@
 import React from "react";
 import { usePagesStateDisptch, usePagesStateValue } from "../pages/provider";
-import appNotCreatedFallback from "../uidata/app-pages-not-created-fallback";
+import appPagesNotCreatedFallback from "../uidata/app-pages-not-created-fallback";
 import { useAxios } from "./useAxios";
 
 export default function useApps() {
-  const apps = usePagesStateValue("apps") ?? [];
+  const apps = usePagesStateValue("apps") ?? appPagesNotCreatedFallback;
 
   const loadingApps = usePagesStateValue("loaders.apps");
 
@@ -17,7 +17,7 @@ export default function useApps() {
       const response = await axios.get("/a");
       const data = response.data;
       if (data) {
-        updateApps([...data]);
+        updateApps(data);
         toggleAppsLoader(false);
         return;
       }
@@ -36,7 +36,7 @@ export default function useApps() {
     if (couldBeEmpty) updateAll();
   }, [couldBeEmpty]);
 
-  return [...apps];
+  return apps;
 }
 
 function useActions() {
@@ -45,7 +45,7 @@ function useActions() {
   const loaders = usePagesStateValue("loaders");
   const loadingApps = usePagesStateValue("loaders.apps");
   const updateApps = React.useCallback(
-    (payload: any[]) => {
+    (payload:any) => {
       const type = "update_all";
       const key = "apps";
       dispatchToPages({ payload, type, key });
