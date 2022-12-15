@@ -21,7 +21,7 @@ export default function usePages() {
       if (data) {
         updatePages(
           [...[landingpage, builder], ...data].map((r) => ({
-            ...React,
+            ...r,
             path: "/",
           }))
         );
