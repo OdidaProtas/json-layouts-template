@@ -13,7 +13,7 @@ import appList from "../uidata/app-list";
 
 export default function Pages() {
   const apps = useApps();
-  const appsLoaded = apps.length;
+  const appsLoaded = Boolean(apps);
 
   const loadingApps = usePagesStateValue("loaders.apps");
   const activeAppId = usePagesStateValue("appId");
