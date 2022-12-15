@@ -1,8 +1,6 @@
 import {
   Divider,
-  Chip,
   Switch,
-  Badge,
   FormGroup,
   FormControlLabel,
   CircularProgress,
@@ -22,42 +20,42 @@ import renderAlert from "./renderAlert";
 import renderTooltip from "./renderTooltip";
 import renderImageField from "./renderImageField";
 import renderBox from "./renderBox";
-import Autocomplete from "./AutoComplete";
-import SimpleDialogDemo from "./Dialog";
-import renderImage from "./renderImage";
-import WovenImageList from "./ImageList";
-import renderTable from "./renderTable";
-import renderForm from "./renderForm";
-import Checkbox from "./Checkbox";
-import renderTabs from "../renderTabs";
-import { IBox } from "./Box";
-import Crumbs from "./Crumbs";
-import TemporaryDrawer from "./Drawer";
-import UnderlineLink from "./Link";
-import Paypal from "./Paypal";
-import BasicSpeedDial from "./SpeedDial";
-import PaginationOutlined from "./Pagination";
-import Skeleton from "./Skeleton";
-import BottomNav from "./BottomNav";
-import SimpleSnackbar from "./Snackbar";
-import Progress from "./Progress";
-import HorizontalStepper from "./Stepper";
-import Slider from "./Slider";
-import Fab from "./Fab";
-import RadioButtonsGroup from "./RadioGroup";
-import Rating from "./Rating";
-import SimpleContainer from "./Container";
-import TransferList from "./TransferList";
-import ToggleButton from "./ToggleButton";
-import ControlledAccordions from "./Accordions";
-import Avatar from "./Avatar";
-import DefaultComponent from "./DefaultComponent";
-import BasicChips from "./Chip";
-import SimpleBadge from "./Badge";
-import PositionedMenu from "./Menu";
+import renderTabs from "./renderTabs";
+import { IBox } from "./components/Box";
+import DefaultComponent from "./components/DefaultComponent";
+import Autocomplete from "./components/AutoComplete";
+import Checkbox from "./components/Checkbox";
+import Fab from "./components/Fab";
+import RadioButtonsGroup from "./components/RadioGroup";
+import Rating from "./components/Rating";
+import Slider from "./components/Slider";
+import TransferList from "./components/TransferList";
+import ToggleButton from "./components/ToggleButton";
+import Avatar from "./components/Avatar";
+import SimpleBadge from "./components/Badge";
+import BasicChips from "./components/Chip";
+import SimpleDialog from "./components/Dialog";
+import Progress from "./components/Progress";
+import Skeleton from "./components/Skeleton";
+import SimpleSnackbar from "./components/Snackbar";
+import ControlledAccordions from "./components/Accordions";
+import WovenImageList from "./components/ImageList";
+import SimpleContainer from "./components/Container";
+import HorizontalStepper from "./components/Stepper";
+import BasicSpeedDial from "./components/SpeedDial";
+import PaginationOutlined from "./components/Pagination";
+import PositionedMenu from "./components/Menu";
+import UnderlineLink from "./components/Link";
+import TemporaryDrawer from "./components/Drawer";
+import Crumbs from "./components/Crumbs";
+import BottomNav from "./components/BottomNav";
+import Paypal from "./components/Paypal";
+import renderImage from "./components/renderImage";
+import renderTable from "./components/renderTable";
+import renderForm from "./components/renderForm";
 
 export default function renderComponents(components: any[] = []) {
-  return components.map((component: any, index: number) => {
+  return components.map((component, index) => {
     const {
       type,
       data = {
@@ -73,7 +71,7 @@ export default function renderComponents(components: any[] = []) {
         return <Autocomplete />;
       }
       case "dialog": {
-        return <SimpleDialogDemo />;
+        return <SimpleDialog />;
       }
       case "button": {
         const {
