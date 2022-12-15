@@ -30,6 +30,7 @@ import renderForm from "./renderForm";
 import renderTabs from "./display/renderTabs";
 import DefaultComponent from "../../components/DefaultComponent";
 import { IBox } from "../../components/Box";
+import Avatar from "../../components/Avatar";
 
 export default function renderComponents(components: any[] = []) {
   return components.map((component, index) => {
@@ -156,8 +157,8 @@ export default function renderComponents(components: any[] = []) {
       case "toggle_button": {
       }
       case "avatar": {
-        const { clickAction = "" } = data;
-        // return <Avatar clickAction={clickAction} />;
+        const { clickAction = "", imageUrl } = data;
+        return <Avatar src={imageUrl} clickAction={clickAction} />;
       }
       case "badge": {
         return <Badge />;

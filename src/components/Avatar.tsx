@@ -1,9 +1,9 @@
 import MuiAvatar from "@mui/material/Avatar";
 import useIntent from "../hooks/useIntent";
 
-export default function Avatar({ clickAction = "" }: any) {
+export default function Avatar({ clickAction = "", src }: any) {
   const handleClick = useIntent({ clickAction });
   return (
-    <MuiAvatar sx={{ cursor: "pointer" }} onClick={handleClick}></MuiAvatar>
+    <MuiAvatar src={src} sx={{ cursor: "pointer" }} onClick={handleClick}></MuiAvatar>
   );
 }
