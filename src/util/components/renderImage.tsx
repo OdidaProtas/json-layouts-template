@@ -1,3 +1,3 @@
-export default function renderImage(source:string) {
-  return <img src={source} alt="image" />;
+export default function renderImage(source: string) {
+  return <img width="100%" src={source} alt="image" />;
 }

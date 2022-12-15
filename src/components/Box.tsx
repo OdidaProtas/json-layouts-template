@@ -1,8 +1,6 @@
 import React, { Suspense } from "react";
-import renderComponents from "../util/components/renderComponents";
 
-import Skeleton from "@mui/material/Skeleton";
-import { ErrorBoundary } from "../features/errorBoundary";
+import renderComponents from "../util/components/renderComponents";
 
 const MuiBox = React.lazy(() => import("@mui/material/Box"));
 
@@ -29,15 +27,7 @@ export default function Box({
   if (textAlign) sx.textAlign = "center";
   if (centerHorizontal) sx.justifyConytent = "space-between";
 
-  const suspenseFallback = () => <Skeleton variant="rectangular" />;
-
-  return (
-    <ErrorBoundary>
-      <Suspense fallback={suspenseFallback()}>
-        <MuiBox sx={{ ...sx }}>{children}</MuiBox>
-      </Suspense>
-    </ErrorBoundary>
-  );
+  return <MuiBox sx={{ ...sx }}>{children}</MuiBox>;
 }
 
 export interface IBox {
