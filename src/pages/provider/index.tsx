@@ -10,6 +10,7 @@ const initialState = {
   theme: null,
   appId: null,
   apps: [],
+  pageIndex:0
 };
 
 export const PagesContext = React.createContext(initialState);
