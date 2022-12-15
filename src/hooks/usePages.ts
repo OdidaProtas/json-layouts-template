@@ -20,7 +20,7 @@ export default function usePages() {
       const data = response.data;
       if (data) {
         updatePages(
-          [...[landingpage, builder], ...data].map((r) => ({
+          [...data].map((r) => ({
             ...r,
             path: "/",
           }))
@@ -35,10 +35,7 @@ export default function usePages() {
     }
   }
 
-  const couldBeEmpty =
-    !pages.length &&
-    (loadingPages === null || loadingPages === undefined) &&
-    !loadingPages;
+  const couldBeEmpty = !pages.length && !loadingPages;
 
   React.useEffect(() => {
     if (couldBeEmpty && appId) updateAll();
