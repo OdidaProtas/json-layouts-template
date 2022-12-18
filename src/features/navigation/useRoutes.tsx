@@ -1,6 +1,6 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import renderPage from "../../util/components/renderPage";
+import renderPage from "../../util/renderPage";
 
 export default function useRoutes(navData: any) {
     return React.useMemo(

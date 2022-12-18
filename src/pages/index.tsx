@@ -3,7 +3,7 @@ import usePages from "../hooks/usePages";
 import useTheme from "../hooks/useTheme";
 import appsLoaderFallback from "../uidata/appsLoaderFallback";
 import appsNotFoundFallback from "../uidata/appsNotFoundFallback";
-import renderPage from "../util/components/renderPage";
+import renderPage from "../util/renderPage";
 
 import Page from "./page";
 
