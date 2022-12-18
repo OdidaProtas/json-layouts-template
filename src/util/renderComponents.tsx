@@ -20,6 +20,9 @@ import renderAlert from "./renderAlert";
 import renderTooltip from "./renderTooltip";
 import renderImageField from "./renderImageField";
 import renderBox from "./renderBox";
+import renderImage from "./renderImage";
+import renderTable from "./renderTable";
+import renderForm from "./renderForm";
 import renderTabs from "./renderTabs";
 import { IBox } from "./components/Box";
 import DefaultComponent from "./components/DefaultComponent";
@@ -50,9 +53,6 @@ import TemporaryDrawer from "./components/Drawer";
 import Crumbs from "./components/Crumbs";
 import BottomNav from "./components/BottomNav";
 import Paypal from "./components/Paypal";
-import renderImage from "./components/renderImage";
-import renderTable from "./components/renderTable";
-import renderForm from "./components/renderForm";
 
 export default function renderComponents(components: any[] = []) {
   return components.map((component, index) => {
@@ -239,8 +239,8 @@ export default function renderComponents(components: any[] = []) {
         return <ControlledAccordions />;
       }
       case "avatar": {
-        const { clickAction = "" } = data;
-        return <Avatar clickAction={clickAction} />;
+        const { clickAction = "", imageUrl } = data;
+        return <Avatar imageUrl={imageUrl} clickAction={clickAction} />;
       }
       case "badge": {
         return <SimpleBadge />;

@@ -3,11 +3,11 @@ import Navigation from "../../features/navigation";
 import usePages from "../../hooks/usePages";
 import appNotCreatedFallback from "../../uidata/app-pages-not-created-fallback";
 import pagesLoaderFallback from "../../uidata/pagesLoaderFallback";
-import renderPage from "../../util/components/renderPage";
 import { usePagesStateValue } from "../provider";
 
 import CloseIcon from "@mui/icons-material/Close";
 import Fab from "@mui/material/Fab";
+import renderPage from "../../util/renderPage";
 
 export default function Page() {
   const pagesNavigationData = usePages();

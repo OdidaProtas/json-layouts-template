@@ -1,4 +1,5 @@
 import MuiButton from "@mui/material/Button";
+import useIntent from "../../hooks/useIntent";
 
 export default function Button({
   color = "primary",
@@ -11,6 +12,9 @@ export default function Button({
   href,
   target,
 }: any) {
+
+  const onClick = useIntent({ clickAction })
+
   if (href && target) {
     return (
       <MuiButton
@@ -35,7 +39,7 @@ export default function Button({
       variant={variant}
       color={color}
       disableElevation
-      onClick={() => {}}
+      onClick={onClick}
     >
       {text}
     </MuiButton>
