@@ -5,9 +5,10 @@ import {
   FormControlLabel,
   CircularProgress,
   Paper,
+  Stack,
 } from "@mui/material";
 
-import renderCard from "./renderCards";
+import RenderCard from "./renderCards";
 import renderGrid from "./renderGrid";
 import renderText from "./renderText";
 
@@ -18,6 +19,7 @@ import renderSelect from "./renderSelect";
 import renderList from "./renderList";
 import renderAlert from "./renderAlert";
 import renderTooltip from "./renderTooltip";
+import renderRating from "./renderRating";
 import renderImageField from "./renderImageField";
 import renderBox from "./renderBox";
 import renderImage from "./renderImage";
@@ -53,6 +55,7 @@ import TemporaryDrawer from "./components/Drawer";
 import Crumbs from "./components/Crumbs";
 import BottomNav from "./components/BottomNav";
 import Paypal from "./components/Paypal";
+import ButtonGroup from "./components/ButtonGroup";
 
 export default function renderComponents(components: any[] = []) {
   return components.map((component, index) => {
@@ -63,15 +66,35 @@ export default function renderComponents(components: any[] = []) {
       },
     } = component;
     switch (type) {
+      case "stack": {
+        const { direction, components = [], spacing } = data;
+        return (
+          <Stack key={index} spacing={spacing} direction={direction}>
+            {renderComponents([...components])}
+          </Stack>
+        );
+      }
       case "grid": {
         const { components = [], spacing = 2 }: any = data;
         return renderGrid({ components, spacing });
       }
       case "autocomplete": {
-        return <Autocomplete />;
+        const { options = [], label = "Select" } = data;
+        return <Autocomplete label={label} options={options} key={index} />;
+      }
+      case "buttongroup": {
+        const { options = [] } = data;
+        return <ButtonGroup options={options} key={index} />;
       }
       case "dialog": {
-        return <SimpleDialog />;
+        const { buttonText, components = [] } = data;
+        return (
+          <SimpleDialog
+            key={index}
+            components={components}
+            buttonText={buttonText}
+          />
+        );
       }
       case "button": {
         const {
@@ -98,15 +121,30 @@ export default function renderComponents(components: any[] = []) {
         });
       }
       case "card": {
-        const { imageUrl = "", title, text, actions } = data;
-        return renderCard(imageUrl, title, text, actions);
+        const { imageUrl = "", title, body, actions = [] } = data;
+        return (
+          <RenderCard
+            actions={actions}
+            body={body}
+            title={title}
+            imageUrl={imageUrl}
+          />
+        );
       }
       case "image": {
         const { imageUrl } = data;
         return renderImage(imageUrl);
       }
       case "imagelist": {
-        return <WovenImageList />;
+        const { options = [], height = 450, width = 600 } = data;
+        return (
+          <WovenImageList
+            width={width}
+            height={height}
+            key={index}
+            options={options}
+          />
+        );
       }
       case "table": {
         const { rows = [], headers = [] }: any = data;
@@ -117,11 +155,12 @@ export default function renderComponents(components: any[] = []) {
         return renderForm({ components, label });
       }
       case "checkbox": {
-        return <Checkbox key={index} />;
+        const { defaultChecked = false } = data;
+        return <Checkbox defaultChecked={defaultChecked} key={index} />;
       }
       case "textfield": {
-        const { label } = data;
-        return renderTextField({ label });
+        const { label, type } = data;
+        return renderTextField({ label, type });
       }
       case "tabs": {
         return renderTabs();
@@ -161,13 +200,22 @@ export default function renderComponents(components: any[] = []) {
         return <Crumbs />;
       }
       case "drawer": {
-        return <TemporaryDrawer />;
+        const { options, buttonText } = data;
+        return (
+          <TemporaryDrawer
+            key={index}
+            buttonText={buttonText}
+            options={options}
+          />
+        );
       }
       case "link": {
-        return <UnderlineLink />;
+        const { href, text } = data;
+        return <UnderlineLink href={href} text={text} key={index} />;
       }
       case "menu": {
-        return <PositionedMenu />;
+        const { options = [] } = data;
+        return <PositionedMenu options={options} />;
       }
       case "paypal": {
         return <Paypal />;
@@ -209,13 +257,16 @@ export default function renderComponents(components: any[] = []) {
         return <Fab />;
       }
       case "radiogroup": {
-        return <RadioButtonsGroup />;
+        const { options = [] } = data;
+        return <RadioButtonsGroup key={index} options={options} />;
       }
       case "rating": {
-        return <Rating />;
+        const { initialValue = 3 } = data;
+        return <Rating key={index} initialValue={initialValue} />;
       }
       case "container": {
-        return <SimpleContainer />;
+        const { components = [] } = data;
+        return <SimpleContainer components={components} />;
       }
       case "switch": {
         const { label } = data;
@@ -233,10 +284,11 @@ export default function renderComponents(components: any[] = []) {
         return <TransferList />;
       }
       case "togglebutton": {
-        return <ToggleButton />;
+        const { options = [] } = data;
+        return <ToggleButton key={index} options={options} />;
       }
       case "accordion": {
-        return <ControlledAccordions />;
+        return <ControlledAccordions key={index} />;
       }
       case "avatar": {
         const { clickAction = "", imageUrl } = data;
@@ -254,7 +306,8 @@ export default function renderComponents(components: any[] = []) {
       // case "icons": {
       // }
       case "list": {
-        return renderList({ children: null });
+        const { options = 0 } = data;
+        return renderList({ options });
       }
       case "tooltip": {
         return renderTooltip();
