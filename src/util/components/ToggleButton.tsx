@@ -2,8 +2,8 @@ import * as React from "react";
 import MUIToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 
-export default function ToggleButton() {
-  const [alignment, setAlignment] = React.useState("web");
+export default function ToggleButton({ options = [] }) {
+  const [alignment, setAlignment] = React.useState("");
 
   const handleChange = (
     event: React.MouseEvent<HTMLElement>,
@@ -20,9 +20,13 @@ export default function ToggleButton() {
       onChange={handleChange}
       aria-label="Platform"
     >
-      <MUIToggleButton value="web">Web</MUIToggleButton>
-      <MUIToggleButton value="android">Android</MUIToggleButton>
-      <MUIToggleButton value="ios">iOS</MUIToggleButton>
+      {options.map((option, index) => {
+        return (
+          <MUIToggleButton key={index} value={option.value}>
+            {option.label}
+          </MUIToggleButton>
+        );
+      })}
     </ToggleButtonGroup>
   );
 }
