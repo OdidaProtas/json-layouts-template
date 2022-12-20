@@ -1,7 +1,7 @@
 import React from "react";
 import { usePagesStateDisptch, usePagesStateValue } from "../pages/provider";
-import builder from "../uidata/app-form";
-import landingpage from "../uidata/landingpage";
+import appForm from "../uidata/stilldre";
+import appList from "../uidata/app-list";
 import { useAxios } from "./useAxios";
 
 export default function usePages() {
@@ -20,10 +20,7 @@ export default function usePages() {
       const data = response.data;
       if (data) {
         updatePages(
-          [...data].map((r) => ({
-            ...r,
-            path: "/",
-          }))
+          [appList, appForm]
         );
         togglePagesLoader(false);
         return;
@@ -38,7 +35,7 @@ export default function usePages() {
   const couldBeEmpty = !pages.length && !loadingPages;
 
   React.useEffect(() => {
-    if (couldBeEmpty && appId) updateAll();
+    if (couldBeEmpty ) updateAll();
   }, [couldBeEmpty, appId]);
 
   return [...pages];

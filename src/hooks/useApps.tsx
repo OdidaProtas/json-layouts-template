@@ -45,7 +45,7 @@ function useActions() {
   const loaders = usePagesStateValue("loaders");
   const loadingApps = usePagesStateValue("loaders.apps");
   const updateApps = React.useCallback(
-    (payload:any) => {
+    (payload: any) => {
       const type = "update_all";
       const key = "apps";
       dispatchToPages({ payload, type, key });

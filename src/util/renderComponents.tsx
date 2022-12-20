@@ -19,7 +19,6 @@ import renderSelect from "./renderSelect";
 import renderList from "./renderList";
 import renderAlert from "./renderAlert";
 import renderTooltip from "./renderTooltip";
-import renderRating from "./renderRating";
 import renderImageField from "./renderImageField";
 import renderBox from "./renderBox";
 import renderImage from "./renderImage";

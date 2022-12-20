@@ -9,11 +9,12 @@ import Page from "./page";
 
 import { ThemeProvider } from "@mui/material";
 import { usePagesStateValue } from "./provider";
-import appList from "../uidata/app-list";
+import Mpesa from "../util/components/Mpesa";
 
 export default function Pages() {
   const apps = useApps();
   const appsLoaded = Boolean(apps);
+
 
   const loadingApps = usePagesStateValue("loaders.apps");
   const activeAppId = usePagesStateValue("appId");
@@ -23,9 +24,13 @@ export default function Pages() {
   usePages();
   const theme = useTheme();
 
+
+  return <Mpesa />
+
   if (loadingApps) return renderPage(appsLoaderFallback);
   if (appsLoaded && noActiveApp) return renderPage(apps);
   if (!appsLoaded) return renderPage(appsNotFoundFallback);
+
 
   return (
     <ThemeProvider theme={theme}>
