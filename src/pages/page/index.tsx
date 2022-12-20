@@ -18,7 +18,7 @@ export default function Page() {
 
   if (!loadingPages && !hasNavigationData)
     return renderPage(appNotCreatedFallback);
-
+    
   return (
     <ErrorBoundary>
       <Navigation navData={pagesNavigationData} />

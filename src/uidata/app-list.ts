@@ -1,5 +1,6 @@
 export default {
   layout: "page",
+  path: "/",
   name: "App List",
   components: [
     {
@@ -16,13 +17,6 @@ export default {
         spaceEvenly: "true",
         components: [
           {
-            type: "text",
-            data: {
-              text: "Available apps",
-              variant: "h6",
-            },
-          },
-          {
             type: "button",
             data: {
               text: "Create an app",
@@ -36,35 +30,6 @@ export default {
     },
     {
       type: "divider",
-    },
-    {
-      type: "grid",
-      data: {
-        spacing: 3,
-        components: [
-          {
-            type: "paper",
-            data: {
-              xs: 3,
-              elevation: 1,
-              components: [
-                {
-                  type: "avatar",
-                  data: {
-                    clickAction: "update_state_value-appId-123456",
-                  },
-                },
-                {
-                  type: "text",
-                  data: {
-                    text: "Dreamercodes",
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
     },
   ],
   opts: {},
