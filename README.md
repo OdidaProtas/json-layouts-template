@@ -4,7 +4,7 @@
 Work in progress. Come back soon 😊
 ***
 
-Hompage: <https://json-layouts-template.vercel.app>
+Hompage: <https://json-layouts-api-template.vercel.app/>
 
 #### Built with.
 
