@@ -24,9 +24,6 @@ export default function Pages() {
   usePages();
   const theme = useTheme();
 
-
-  return <Mpesa />
-
   if (loadingApps) return renderPage(appsLoaderFallback);
   if (appsLoaded && noActiveApp) return renderPage(apps);
   if (!appsLoaded) return renderPage(appsNotFoundFallback);
